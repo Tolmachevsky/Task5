@@ -1,39 +1,39 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>Users</title>
+    <meta charset="UTF-8">
+    <title>Users</title>
 </head>
 <body>
 <div th:switch="${users}">
-  <h2 th:case="null">No users found!</h2>
-  <div th:case="*">
-    <h2>Users</h2>
-    <table border="1">
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Date of birth</th>
-        <th>Email</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="user : ${users}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.surname}"></td>
-        <td th:text="${user.dateOfBirth}"></td>
-        <td th:text="${user.email}"></td>
-        <td><a th:href="@{admin/update/{id}(id=${user.id})}">Edit</a></td>
-        <td><a th:href="@{admin/delete/{id}(id=${user.id})}">Delete</a></td>
-        <td><a th:href="@{admin/makeAdmin/{id}(id=${user.id})}">Make Admin</a></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <p><a href="/logout">Logout</a></p>
+    <h2 th:case="null">No users found!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Date of birth</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.surname}"></td>
+                <td th:text="${user.dateOfBirth}"></td>
+                <td th:text="${user.email}"></td>
+                <td><a th:href="@{admin/update/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{admin/delete/{id}(id=${user.id})}">Delete</a></td>
+                <td><a th:href="@{admin/makeAdmin/{id}(id=${user.id})}">Make Admin</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/logout">Logout</a></p>
 </div>
 </body>
 </html>

@@ -14,18 +14,12 @@ import java.util.List;
 
 @Entity
 public class User implements UserDetails {
-    public User() {
-        ArrayList<Role> roleArrayList = new ArrayList<>();
-        roleArrayList.add(Role.USER);
-        roles = roleArrayList;
-        isActive = true;
-    }
 
     private String password;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(value = EnumType.STRING)
     private List<Role> roles;
-    private boolean isActive;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -100,26 +94,34 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return isActive;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return isActive;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return isActive;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return isActive;
+        return true;
     }
 
     public void makeAdmin() {
         roles.add(Role.ADMIN);
+    }
+
+    public void addRole(Role role) {
+        if (roles == null) {
+            ArrayList<Role> roleArrayList = new ArrayList<>();
+            roles = roleArrayList;
+        }
+        roles.add(role);
     }
 
 }
