@@ -16,6 +16,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     private String password;
+
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(value = EnumType.STRING)
     private List<Role> roles;
@@ -27,11 +28,12 @@ public class User implements UserDetails {
     private String name;
 
     private String surname;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
-    private String email;
 
+    private String email;
 
     public String getSurname() {
         return surname;
